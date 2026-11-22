@@ -14,8 +14,9 @@ html,body{height:100%;background:#03080a;overflow:hidden;font-family:"Arial Roun
 #fg{background:url(icons/foreground.webp) center/100% 100%;transform-origin:50% 100%;animation:sway 7s ease-in-out infinite alternate;z-index:2}
 @keyframes sway{from{transform:rotate(-.35deg) scale(1.025)}to{transform:rotate(.35deg) scale(1.03)}}
 #vig{z-index:8;background:radial-gradient(ellipse at 50% 50%,transparent 55%,rgba(0,0,0,.55) 100%);transition:background .4s}
-#vig.antic{animation:vigp .8s ease-in-out infinite alternate}
-@keyframes vigp{from{background:radial-gradient(ellipse at 50% 50%,transparent 45%,rgba(120,0,40,.55) 100%)}to{background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(190,0,60,.8) 100%)}}
+#vig.antic{animation:vigs .55s ease-in-out infinite alternate}
+@keyframes vigs{from{background:radial-gradient(ellipse at 50% 50%,transparent 40%,rgba(0,12,10,.55) 100%)}to{background:radial-gradient(ellipse at 50% 50%,transparent 30%,rgba(0,8,6,.84) 100%)}}
+@keyframes vigp{from{background:radial-gradient(ellipse at 50% 50%,transparent 50%,rgba(90,10,30,.32) 100%)}to{background:radial-gradient(ellipse at 50% 50%,transparent 38%,rgba(110,10,36,.5) 100%)}}
 #fly{z-index:5}
 #logo{position:absolute;left:620px;top:-4px;width:360px;z-index:6;filter:drop-shadow(0 6px 10px rgba(0,0,0,.6));animation:logo 5s ease-in-out infinite alternate}
 @keyframes logo{from{transform:translateY(0) scale(1)}to{transform:translateY(5px) scale(1.025)}}
@@ -24,7 +25,8 @@ html,body{height:100%;background:#03080a;overflow:hidden;font-family:"Arial Roun
 #reels{position:absolute;left:340px;top:211px;width:940px;height:510px;display:flex;overflow:hidden;border-radius:10px;background:linear-gradient(#0c1c1c,#05100f);box-shadow:inset 0 0 40px #000;z-index:4}
 .reel{position:relative;width:188px;height:510px;overflow:hidden;border-right:2px solid rgba(110,160,90,.35)}
 .reel:last-child{border:0}
-.reel.antic::after{content:"";position:absolute;inset:0;box-shadow:inset 0 0 40px 6px rgba(255,60,110,.85);animation:vigp .35s infinite alternate}
+.reel.antic::after{content:"";position:absolute;inset:-30px;pointer-events:none;background:radial-gradient(ellipse at 50% 50%,rgba(255,240,160,.6),rgba(255,205,80,.2) 42%,transparent 70%);animation:anticpulse .42s ease-in-out infinite alternate}
+@keyframes anticpulse{from{opacity:.45;transform:scale(.9)}to{opacity:1;transform:scale(1.06)}}
 .strip{position:absolute;left:0;top:0;width:100%;will-change:transform}
 .cell{width:188px;height:170px;display:flex;align-items:center;justify-content:center;position:relative}
 .cell img{width:150px;height:150px;object-fit:contain;filter:drop-shadow(0 8px 8px rgba(0,0,0,.6))}
@@ -363,12 +365,12 @@ for(let c=0;c<COLS;c++){const r=document.createElement('div');r.className='reel'
 function setStatic(c,land){const st=reelEls[c].st;st.style.transition='none';st.style.transform='translateY(0)';st.innerHTML='';grid[c].forEach(s=>st.appendChild(cellEl(s)));if(land)st.querySelectorAll('.cell').forEach(e=>e.classList.add('land'))}
 for(let c=0;c<COLS;c++)setStatic(c);
 function spinReel(c,final,dur,antic){return new Promise(res=>{
-  const {r,st}=reelEls[c];const seq=[...grid[c]];const filler=14+c*7+(antic?10:0);for(let i=0;i<filler;i++)seq.push(rnd());seq.push(...final);
+  const {r,st}=reelEls[c];const seq=[...grid[c]];const filler=Math.max(8,Math.round(dur/62));for(let i=0;i<filler;i++)seq.push(rnd());seq.push(...final);
   st.innerHTML='';seq.forEach(s=>st.appendChild(cellEl(s)));const dist=(seq.length-3)*CH;r.classList.add('spinning');if(antic)r.classList.add('antic');
   st.style.transition='none';st.style.transform='translateY(0)';st.offsetHeight;
   st.style.transition=`transform ${dur}ms cubic-bezier(.25,.6,.3,1)`;st.style.transform=`translateY(${-(dist+28)}px)`;
-  setTimeout(()=>{r.classList.remove('spinning','antic');st.style.transition='transform .22s ease-out';st.style.transform=`translateY(${-dist}px)`;
-    setTimeout(()=>{grid[c]=final;setStatic(c,true);sfx.stop(c);res()},230)},dur)})}
+  setTimeout(()=>{r.classList.remove('spinning','antic');st.style.transition='transform .15s ease-out';st.style.transform=`translateY(${-dist}px)`;
+    setTimeout(()=>{grid[c]=final;setStatic(c,true);sfx.stop(c);res()},160)},dur)})}
 function makeResult(){
   const g=[];for(let c=0;c<COLS;c++)g.push([rnd(),rnd(),rnd()]);
   // ta bort av misstag för många scatter när inget är påtvingat
@@ -424,19 +426,27 @@ function stickyClear(){sticky.clear();Object.values(stickyEls).forEach(e=>e.remo
 function renderMeter(){const el=$('pips');el.innerHTML='';for(let i=0;i<10;i++)el.insertAdjacentHTML('beforeend',`<div class="pip ${i<meter?'on':''}"><img src="icons/dragonfly.webp"></div>`)}
 renderMeter();
 // ======== spinn ========
-function anticipationCols(res){let n=0;for(let c=0;c<3;c++)if(res[c].includes('scatter'))n++;return n>=2?[3,4]:[]}
+function anticipationCols(res){
+  let n=0;for(let c=0;c<3;c++)if(res[c].includes('scatter'))n++;
+  if(n>=2)return [3,4];                       // två lotus på de första hjulen: bonus på väg
+  const top=['f_yellow','f_purple','f_red'];   // fyra lika av en toppgroda på en linje: sista hjulet avgör
+  for(const ln of LINES){let base=null,k=0;
+    for(let c=0;c<4;c++){const s=res[c][ln[c]];if(s==='scatter'){k=-9;break}if(s==='wild'){k++;continue}if(base===null)base=s;if(s===base)k++;else{k=-9;break}}
+    if(k===4&&(base===null||top.includes(base)))return [4]}
+  return []}
 async function doSpin(){
   if(spinning||$('pond').classList.contains('show'))return;const bet=BETS[betIdx];
   if(!fs&&balance<bet){toast('Out of coins, reload for the demo');auto=false;$('auto').classList.remove('on');return}
   spinning=true;$('spin').classList.add('busy');clearWins();if(!fs)balance-=bet;updateUI();$('win').textContent='0';
   pose('crouch');sfx.whoosh();if(crocState!=='down')crocSet('down');
-  const res=makeResult(),anticCols=anticipationCols(res);let anticOn=false;
-  for(let c=0;c<COLS;c++){
-    const antic=anticCols.includes(c);
-    if(antic&&!anticOn){anticOn=true;$('vig').classList.add('antic');$('frame').classList.add('hot');pose('shock');sfx.beat();setInterval(()=>{},0)}
-    if(anticOn)sfx.beat();
-    await spinReel(c,res[c],c===0?820:antic?2100:640+c*40,antic)
-  }
+  const res=makeResult(),anticCols=anticipationCols(res),anticOn=anticCols.length>0;
+  const stop=[0,1,2,3,4].map(c=>650+c*160);            // hjulen stannar efter 0,65 s, med 0,16 s mellan varje
+  if(anticOn){const a=anticCols[0];stop[a]=stop[a-1]+(anticCols.length>1?1500:1200);for(let k=1;k<anticCols.length;k++)stop[anticCols[k]]=stop[anticCols[k]-1]+900}
+  let beatIv=null;
+  const startAntic=()=>{$('vig').classList.add('antic');$('frame').classList.add('hot');pose('shock');sfx.beat();
+    beatIv=setInterval(()=>{sfx.beat();anticCols.forEach(c=>fireflyBurst(RX+c*CW+CW/2,RY+255,8,'#ffe27a'))},520)};
+  await Promise.all(res.map((f,c)=>spinReel(c,f,stop[c],anticCols.includes(c)).then(()=>{if(anticOn&&c===anticCols[0]-1)startAntic()})));
+  if(beatIv)clearInterval(beatIv);
   $('vig').classList.remove('antic');$('frame').classList.remove('hot');pose('idle');
   const scNow=grid.flat().filter(s=>s==='scatter').length;
   if(anticOn&&scNow<3){pose('shock',900);toast('So close!')}
