@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="sv"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Venom Pond – slot demo</title>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Venom Pond – living slot demo</title>
 <style>
 *{box-sizing:border-box;margin:0;padding:0;user-select:none;-webkit-tap-highlight-color:transparent}
 html,body{height:100%;background:#03080a;overflow:hidden;font-family:"Arial Rounded MT Bold","Trebuchet MS",Verdana,sans-serif;font-weight:900}
@@ -276,7 +276,7 @@ html,body{height:100%;background:#03080a;overflow:hidden;font-family:"Arial Roun
   <canvas class="layer" id="fly" width="1600" height="900"></canvas>
   <div class="layer" id="vig"></div>
   <img id="logo" src="icons/logo.webp" alt="Venom Pond">
-  <div id="meter"><b>🪰 DRAGONFLY HUNT</b><div class="pips" id="pips"></div><small>10 sländor = 7 free spins med sticky wilds · halvvägs = garanterad tungstrike</small></div>
+  <div id="meter"><b>🪰 DRAGONFLY HUNT</b><div class="pips" id="pips"></div><small>10 dragonflies = 7 free spins with sticky wilds · halfway = guaranteed Tongue Strike</small></div>
   <div id="fsbadge"></div>
   <div id="frame"></div>
   <div id="reels"></div><svg id="lines" viewBox="0 0 940 510"></svg>
@@ -285,13 +285,13 @@ html,body{height:100%;background:#03080a;overflow:hidden;font-family:"Arial Roun
   <div id="pool"><div class="puddle"></div><div id="croc"></div><div class="rip"></div><div class="rip b"></div></div>
   <div id="spin"><span>SPIN</span></div>
   <div id="auto"><span>AUTO</span><i></i></div>
-  <button id="infobtn" title="Så vinner du">i</button>
-  <div id="hint">3 LIKA SYMBOLER I RAD FRÅN VÄNSTER = VINST · GULDGRODAN (WILD) ERSÄTTER ALLA</div>
+  <button id="infobtn" title="How to win">i</button>
+  <div id="hint">3+ MATCHING SYMBOLS IN A ROW FROM THE LEFT = WIN · THE GOLDEN FROG (WILD) SUBSTITUTES</div>
   <div class="bar" id="balance"><small>BALANCE</small><div class="v" id="bal">0</div></div>
   <div class="bar" id="betbox"><small>BET</small><button class="pm" style="left:10px" id="minus">−</button><div class="v" id="bet">0</div><button class="pm" style="right:10px" id="plus">+</button></div>
   <div class="bar" id="winbox"><small>WIN</small><div class="v" id="win">0</div></div>
   <div class="layer" id="fg"></div>
-  <div id="info"><div class="panel"><button id="infoclose">×</button><h2>SÅ VINNER DU</h2><div class="cols"><div class="col" id="infoL"></div><div class="col" id="infoR"></div></div><div id="infoF"></div></div></div>
+  <div id="info"><div class="panel"><button id="infoclose">×</button><h2>HOW TO WIN</h2><div class="cols"><div class="col" id="infoL"></div><div class="col" id="infoR"></div></div><div id="infoF"></div></div></div>
   <div id="ban"><img id="banimg" src="icons/ban_pond.webp"></div>
   <div id="toast"></div>
   <canvas id="fx" width="1600" height="900"></canvas>
@@ -301,16 +301,16 @@ html,body{height:100%;background:#03080a;overflow:hidden;font-family:"Arial Roun
   <div id="bwamt">0</div><div id="bwsub"></div><div id="bwflash"></div></div>
   <div id="pond"><div class="layer pbg"></div><div class="layer shade"></div><div class="layer mist"></div><div class="layer mist b"></div>
   <img id="ptitleimg" src="icons/ban_pond.webp">
-  <div id="ppot"><small>POTT</small><b id="ppotv">0</b><i id="pnext"></i></div>
+  <div id="ppot"><small>POT</small><b id="ppotv">0</b><i id="pnext"></i></div>
   <div id="pladder"></div><div id="pwater"></div><div id="pbtns"></div><div class="layer" id="pvig"></div><div id="redflash"></div></div>
   <div id="pintro"><div class="rays"></div><img class="lot l" src="icons/scatter.webp"><img class="lot r" src="icons/scatter.webp">
-    <img class="ptt" src="icons/ban_pond.webp"><div class="psub">Hoppa över sjön – men akta krokodilen!</div>
-    <div class="pline">STARTPOTT<b id="pi-pot">0</b></div><button id="pi-go">HOPPA IN!</button>
+    <img class="ptt" src="icons/ban_pond.webp"><div class="psub">Hop across the pond, but beware the crocodile!</div>
+    <div class="pline">STARTING POT<b id="pi-pot">0</b></div><button id="pi-go">HOP IN!</button>
     <img id="pi-frog" src="icons/m_cheer.webp"><img id="pi-croc" src="icons/croc_roar.webp"></div>
   <div id="wipe"></div>
 </div>
-<div id="demo">Demo, inga riktiga pengar. Mellanslag = spin.
-<button onclick="force('win')">Vinst</button><button onclick="force('big')">Big win</button><button onclick="force('mega')">Mega win</button><button onclick="force('epic')">Epic win</button><button onclick="force('tongue')">Tungstrike</button><button onclick="force('super')">Super Frog</button><button onclick="force('croc')">Croc Chomp</button><button onclick="force('venom')">Venom Rain</button><button onclick="force('bonus')">Pond Hoppin'</button><button onclick="force('fs')">Free spins</button><button onclick="force('antic')">Spänning</button></div>
+<div id="demo">Demo, no real money. Space = spin.
+<button onclick="force('win')">Win</button><button onclick="force('big')">Big win</button><button onclick="force('mega')">Mega win</button><button onclick="force('epic')">Epic win</button><button onclick="force('tongue')">Tongue Strike</button><button onclick="force('super')">Super Frog</button><button onclick="force('croc')">Croc Chomp</button><button onclick="force('venom')">Venom Rain</button><button onclick="force('bonus')">Pond Hoppin'</button><button onclick="force('fs')">Free spins</button><button onclick="force('antic')">Anticipation</button></div>
 <script>
 // ======== konfiguration (flyttas rakt in i Luau/serverkod) ========
 const S={f_yellow:'icons/f_yellow.webp',f_purple:'icons/f_purple.webp',f_red:'icons/f_red.webp',f_blue:'icons/f_blue.webp',
@@ -417,7 +417,7 @@ async function tongueStrike(){
     sfx.chime();
     await retract();pose('cheer');await sleep(220)}
   if(!fs){const before=meter;meter=Math.min(10,meter+1);renderMeter();
-    if(before<5&&meter>=5&&!halfGiven){halfGiven=true;forceTongue=true;setTimeout(()=>toast('HALVVÄGS! Nästa spinn: garanterad tungstrike'),500)}}
+    if(before<5&&meter>=5&&!halfGiven){halfGiven=true;forceTongue=true;setTimeout(()=>toast('HALFWAY! Next spin: guaranteed Tongue Strike'),500)}}
   pose('idle')}
 function addSticky(c,r){const k=c+','+r;if(sticky.has(k))return;sticky.add(k);const d=document.createElement('div');d.className='stk';d.style.left=(RX+c*CW)+'px';d.style.top=(RY+r*CH)+'px';d.innerHTML='<img src="icons/wild.webp">';$('stage').appendChild(d);stickyEls[k]=d;const q=cellCenter(c,r);fireflyBurst(q.x,q.y,22,'#ffd45a');sfx.chime()}
 function stickyClear(){sticky.clear();Object.values(stickyEls).forEach(e=>e.remove());stickyEls={}}
@@ -427,7 +427,7 @@ renderMeter();
 function anticipationCols(res){let n=0;for(let c=0;c<3;c++)if(res[c].includes('scatter'))n++;return n>=2?[3,4]:[]}
 async function doSpin(){
   if(spinning||$('pond').classList.contains('show'))return;const bet=BETS[betIdx];
-  if(!fs&&balance<bet){toast('Slut på mynt, ladda om för demo');auto=false;$('auto').classList.remove('on');return}
+  if(!fs&&balance<bet){toast('Out of coins, reload for the demo');auto=false;$('auto').classList.remove('on');return}
   spinning=true;$('spin').classList.add('busy');clearWins();if(!fs)balance-=bet;updateUI();$('win').textContent='0';
   pose('crouch');sfx.whoosh();if(crocState!=='down')crocSet('down');
   const res=makeResult(),anticCols=anticipationCols(res);let anticOn=false;
@@ -439,7 +439,7 @@ async function doSpin(){
   }
   $('vig').classList.remove('antic');$('frame').classList.remove('hot');pose('idle');
   const scNow=grid.flat().filter(s=>s==='scatter').length;
-  if(anticOn&&scNow<3){pose('shock',900);toast('Så nära!')}
+  if(anticOn&&scNow<3){pose('shock',900);toast('So close!')}
   let ev0=null;
   if(forceEvent){ev0=forceEvent;forceEvent=null}
   else if(forceTongue){ev0='tongue';forceTongue=false}
@@ -474,11 +474,11 @@ async function showWins(ev,bet){
   balance+=ev.total;updateUI();pose('idle')}
 function countUp(to){return new Promise(res=>{const t0=performance.now(),d=Math.min(1500,500+to);(function f(t){const p=Math.min(1,(t-t0)/d);$('win').textContent=fmt(to*(1-Math.pow(1-p,3)));p<1?requestAnimationFrame(f):res()})(t0)})}
 // ======== free spins ========
-function renderFS(){const b=$('fsbadge');if(!fs){b.style.display='none';return}b.style.display='block';b.innerHTML=`FREE SPINS<big>${fs.left}</big>Sticky wilds · Totalt ${fmt(fs.total)}`}
-async function startFreeSpins(){stickyClear();sfx.chime();pose('cheer');await bwPlay({title:'free',sub:`${FS_SPINS} SPINN · STICKY WILDS`,spins:true});fs={left:FS_SPINS,total:0};renderFS()}
+function renderFS(){const b=$('fsbadge');if(!fs){b.style.display='none';return}b.style.display='block';b.innerHTML=`FREE SPINS<big>${fs.left}</big>Sticky wilds · Total ${fmt(fs.total)}`}
+async function startFreeSpins(){stickyClear();sfx.chime();pose('cheer');await bwPlay({title:'free',sub:`${FS_SPINS} SPINS · STICKY WILDS`,spins:true});fs={left:FS_SPINS,total:0};renderFS()}
 async function endFreeSpins(){
   const t=fs.total,bet=BETS[betIdx];fs=null;renderFS();stickyClear();
-  await bwPlay({amount:t,bet,title:'free',sub:'FREE SPINS KLARA',tiers:false,fromBalance:true});
+  await bwPlay({amount:t,bet,title:'free',sub:'FREE SPINS COMPLETE',tiers:false,fromBalance:true});
   if(auto)setTimeout(doSpin,400)}
 // ======== simmande krokodil i sjön (mjuk bana, guppar, dyker och kommer upp) ========
 function startSwimmer(W){
@@ -521,11 +521,11 @@ function runPond(bet,pot0){return new Promise(async resolve=>{
   P.querySelector('#pcroc')?.remove();const pc=document.createElement('div');pc.id='pcroc';pc.appendChild(makeCroc(640));P.appendChild(pc);
   // stege med odds
   const lad=$('pladder');lad.innerHTML='';const rungs=[];
-  for(let r=4;r>=0;r--){const d=document.createElement('div');d.className='rung'+(ROWS[r].c*2>=ROWS[r].n?' risk':'');d.innerHTML=`<span>x${ROWS[r].m}</span><i>${pct(r)}% säkert</i>`;lad.appendChild(d);rungs[r]=d}
+  for(let r=4;r>=0;r--){const d=document.createElement('div');d.className='rung'+(ROWS[r].c*2>=ROWS[r].n?' risk':'');d.innerHTML=`<span>x${ROWS[r].m}</span><i>${pct(r)}% safe</i>`;lad.appendChild(d);rungs[r]=d}
   const markRung=()=>rungs.forEach((d,r)=>{d.classList.toggle('cur',r===row&&!over);d.classList.toggle('done',r<row)});
   const potEl=$('ppotv');let shown=0;
   const setPot=async(v)=>{const f=shown;shown=v;potEl.classList.remove('bump');void potEl.offsetWidth;potEl.classList.add('bump');await countTo(potEl,f,v,600)};
-  const nextInfo=()=>{$('pnext').innerHTML=row<5?`<span class="l1">NÄSTA HOPP · ${ROWS[row].n-ROWS[row].c} AV ${ROWS[row].n} BLAD SÄKRA <em>${pct(row)}%</em> · x${ROWS[row].m}</span><span class="l2">Chans att nå toppen: ${topChance(row)}%</span>`:''};
+  const nextInfo=()=>{$('pnext').innerHTML=row<5?`<span class="l1">NEXT HOP · ${ROWS[row].n-ROWS[row].c} OF ${ROWS[row].n} PADS SAFE <em>${pct(row)}%</em> · x${ROWS[row].m}</span><span class="l2">Chance to reach the top: ${topChance(row)}%</span>`:''};
   // förbestäm hela vägen
   const pads=[];
   for(let r=0;r<5;r++){const {n,c}=ROWS[r];const crocs=new Set();while(crocs.size<c)crocs.add(Math.floor(Math.random()*n));
@@ -542,15 +542,15 @@ function runPond(bet,pot0){return new Promise(async resolve=>{
   await setPot(pot0);live();
   const result=async(pay,title,sub)=>{
     over=true;live();$('pbtns').innerHTML='';
-    const key=title.startsWith('INSAML')?'collected':title.startsWith('SNAP')?'snap':'jackpot';
+    const key=title.startsWith('COLLECT')?'collected':title.startsWith('SNAP')?'snap':'jackpot';
     await bwPlay({amount:pay,bet,title:key,sub,fromBalance:true,tiers:false,quiet:key==='snap'});
     await wipeIn();P.classList.remove('show');pc.remove();$('fly').style.zIndex='';$('pvig').classList.remove('danger');crocSet('peek');pose('cheer',1200);await wipeOut();resolve(pay)};
   const askChoice=()=>{armed=false;live();const R=ROWS[row];
-    $('pbtns').innerHTML=`<button class="gold" id="collect">COLLECT ${fmt(pot)}</button><button class="risk" id="dare">VÅGA x${R.m}</button><span>Klarar du nästa hopp är chansen ${pct(row)}%. Går det fel behåller du bara 1x insats.</span>`;
-    $('collect').onclick=()=>result(pot,'INSAMLAT!','Du tar hem potten');
+    $('pbtns').innerHTML=`<button class="gold" id="collect">COLLECT ${fmt(pot)}</button><button class="risk" id="dare">PUSH ON x${R.m}</button><span>Clear the next hop with a ${pct(row)}% chance. If it goes wrong you keep only your 1x bet.</span>`;
+    $('collect').onclick=()=>result(pot,'COLLECTED!','You take the pot home');
     $('dare').onclick=()=>{$('pbtns').innerHTML='';sfx.beat();armed=true;live()}};
   // visa vägen man kunde ha tagit, rad för rad
-  const revealPath=async()=>{pads.forEach(p=>p.classList.remove('live','off'));$('pnext').textContent='Så här såg vägen ut…';
+  const revealPath=async()=>{pads.forEach(p=>p.classList.remove('live','off'));$('pnext').textContent='This is how the path looked…';
     for(let r=row;r<5;r++){for(const p of pads.filter(q=>+q.dataset.r===r)){if(p.classList.contains('bad'))continue;
         if(+p.dataset.croc){p.classList.add('show-croc');p.querySelector('.lbl').textContent='🐊'}else{p.classList.add('show-safe');p.querySelector('.lbl').textContent='✓'}}
       tone(400+r*120,.15,'triangle',.06);await sleep(520)}
@@ -582,13 +582,13 @@ function runPond(bet,pot0){return new Promise(async resolve=>{
       await sleep(900);crocFrame(cr,'half');pc.classList.remove('lunge');await sleep(500);crocFrame(cr,'idle');await sleep(300);
       pc.classList.remove('up');$('pvig').classList.remove('danger');await sleep(600);
       await revealPath();
-      return result(bet,'SNAP!','Krokodilen tog potten. Du behåller 1x insats')}
+      return result(bet,'SNAP!','The crocodile took the pot. You keep your 1x bet')}
     p.classList.add('safe');fimg.src='icons/m_cheer.webp';
     const m=ROWS[r0].m;W.insertAdjacentHTML('beforeend',`<div class="mpop" style="left:${x-40}px;top:${y-110}px">x${m}</div>`);
     fireflyBurst(x+WX,y+WY,30,'#fff08a');coinBurst(12);sfx.chime();
     pot=Math.round(pot*m);row++;await setPot(pot);
     await sleep(250);fimg.src='icons/m_idle.webp';over=false;
-    if(row>=5){return result(pot,'JACKPOTHOPP!','Hela sjön över!')}
+    if(row>=5){return result(pot,'JACKPOT HOP!','All the way across!')}
     askChoice()});
 })}
 // ======== banners och slumphändelser ========
@@ -629,18 +629,18 @@ async function superFrog(){
     for(let r=0;r<3;r++)morphCell(c,r,'wild');
     coinBurst(16,RX+c*CW+CW/2,RY+250,120);sfx.chime();await sleep(380)}
   fr.animate([{left:px+'px',top:py+'px'},{left:(px+500)+'px',top:'-300px',transform:'rotate(25deg) scale(.7)'}],{duration:600,fill:'forwards',easing:'ease-in'});await sleep(560);fr.remove();
-  toast('ALLA VINSTER x2');await sleep(600);return 2}
-// ======== vinstguide ========
-const SNAME={f_yellow:'GUL GROD',f_purple:'LILA GROD',f_red:'RÖD GROD',f_blue:'BLÅ GROD',g_ruby:'RUBIN',g_amber:'BÄRNSTEN',g_aqua:'AKVAMARIN',g_emerald:'SMARAGD'};
+  toast('ALL WINS x2');await sleep(600);return 2}
+// ======== win guide ========
+const SNAME={f_yellow:'YELLOW FROG',f_purple:'PURPLE FROG',f_red:'RED FROG',f_blue:'BLUE FROG',g_ruby:'RUBY',g_amber:'AMBER',g_aqua:'AQUAMARINE',g_emerald:'EMERALD'};
 function popWin(x,y,w){const e=document.createElement('div');e.className='winpop2';e.style.left=(x-70)+'px';e.style.top=(y-30)+'px';e.innerHTML=`<img src="${S[w.base]}"><i>${w.n}×</i><b>+${fmt(w.amt)}</b>`;$('stage').appendChild(e);setTimeout(()=>e.remove(),1600)}
 function buildInfo(){
   const order=['f_yellow','f_purple','f_red','f_blue','g_ruby','g_amber','g_aqua','g_emerald'];
   const f=n=>(n/10).toFixed(n/10<10?1:0).replace('.0','');
   let rows=order.map(s=>`<tr><td class="sym"><img src="${S[s]}"></td><td>${SNAME[s]}</td><td>${TWO[s]?f(TWO[s]):'–'}</td><td>${f(PAY[s][0])}</td><td>${f(PAY[s][1])}</td><td>${f(PAY[s][2])}</td></tr>`).join('');
-  $('infoL').innerHTML=`<ol><li><b class="k">3, 4 eller 5 LIKA symboler</b> i rad, från första hjulet åt höger, på en vinstlinje.</li><li>Lika betyder <b class="k">samma symbol</b>: samma groda i samma färg, eller samma ädelsten. En röd och en blå groda är olika.</li><li><b class="k">Guldgrodan (WILD)</b> ersätter alla symboler utom lotusen.</li><li>De tre bästa grodorna ger en liten vinst redan vid <b class="k">2 lika</b>.</li><li><b class="k">3 lotusar</b> var som helst = Pond Hoppin'.</li><li>10 vinstlinjer. Betalningarna visas som <b class="k">gånger din insats</b>.</li></ol>`;
-  $('infoR').innerHTML=`<table><tr><th></th><th></th><th>2 LIKA</th><th>3 LIKA</th><th>4 LIKA</th><th>5 LIKA</th></tr>${rows}</table>`;
+  $('infoL').innerHTML=`<ol><li><b class="k">3, 4 or 5 matching symbols</b> in a row, from the first reel to the right, on a payline.</li><li>Matching means the <b class="k">same symbol</b>: the same frog in the same colour, or the same gem. A red and a blue frog are different symbols.</li><li><b class="k">The golden frog (WILD)</b> substitutes for every symbol except the lotus.</li><li>The three best frogs also pay a small win for just <b class="k">2 of a kind</b>.</li><li><b class="k">3 lotus flowers</b> anywhere = Pond Hoppin'.</li><li>10 paylines. Pays are shown as a <b class="k">multiple of your total bet</b>.</li></ol>`;
+  $('infoR').innerHTML=`<table><tr><th></th><th></th><th>2×</th><th>3×</th><th>4×</th><th>5×</th></tr>${rows}</table>`;
   const lg=LINES.map((ln,i)=>`<div class="lg"><svg viewBox="0 0 100 46"><rect x="1" y="1" width="98" height="44" fill="none" stroke="#26453a"/><polyline fill="none" stroke="#ffd45a" stroke-width="3" stroke-linejoin="round" points="${ln.map((r,c)=>`${10+c*20},${8+r*15}`).join(' ')}"/></svg>${i+1}</div>`).join('');
-  $('infoF').innerHTML=`<div class="lines">${lg}</div><div class="feat"><span>Tungstrike:</span> tungan fångar sländor och gör symboler till wilds. <span>Croc Chomp:</span> krokodilen gör ett hjul till samma groda. <span>Venom Rain:</span> gift förvandlar flera symboler. <span>Super Frog:</span> 3 wilds i rad = guldgrodan gör två hjul till wilds, alla vinster x2. <span>Sländjakten:</span> 10 sländor = 7 Free Spins med sticky wilds. <span>Pond Hoppin':</span> hoppa över bladen, ta hem potten eller våga.</div>`}
+  $('infoF').innerHTML=`<div class="lines">${lg}</div><div class="feat"><span>Tongue Strike:</span> the tongue catches dragonflies and turns symbols wild. <span>Croc Chomp:</span> the crocodile turns a whole reel into the same frog. <span>Venom Rain:</span> venom transforms several symbols. <span>Super Frog:</span> 3 wilds in a row = the golden frog turns two reels wild, all wins x2. <span>Dragonfly Hunt:</span> 10 dragonflies = 7 Free Spins with sticky wilds. <span>Pond Hoppin':</span> hop across the lily pads, collect the pot or push your luck.</div>`}
 buildInfo();
 $('infobtn').onclick=()=>$('info').classList.add('show');$('infoclose').onclick=()=>$('info').classList.remove('show');$('info').onclick=e=>{if(e.target===$('info'))$('info').classList.remove('show')};
 // ======== pengaeffekter och mega win ========
@@ -712,4 +712,24 @@ const flies=Array.from({length:46},()=>({x:Math.random()*1600,y:Math.random()*90
   requestAnimationFrame(loop)})(0);
 function fit(){const s=Math.min(innerWidth/1600,innerHeight/900),st=$('stage');st.style.transform=`scale(${s})`;st.style.marginLeft=-800*s+'px';st.style.marginTop=-450*s+'px'}
 addEventListener('resize',fit);fit();updateUI();
+
+/* demo-läge: ?demo=namn startar en funktion automatiskt (används för skärmbilder) */
+(function(){const q=new URLSearchParams(location.search).get('demo');if(!q)return;
+  document.getElementById('demo').style.display='none';
+  const until=async(fn,max=90000)=>{const t0=Date.now();while(!fn()&&Date.now()-t0<max)await new Promise(r=>setTimeout(r,100));return fn()};
+  const wait=ms=>new Promise(r=>setTimeout(r,ms));
+  setTimeout(async()=>{
+    if(q==='idle')return;
+    if(q==='info'){document.getElementById('infobtn').click();return}
+    if(q.startsWith('pond')){force('bonus');
+      await until(()=>document.getElementById('pintro').classList.contains('show'));
+      if(q==='pondintro')return;
+      await wait(2200);document.getElementById('pi-go').click();
+      await until(()=>document.querySelector('.pad.live'));await wait(900);
+      const safe=()=>[...document.querySelectorAll('.pad.live')].find(p=>p.dataset.croc==='0'),bad=()=>[...document.querySelectorAll('.pad.live')].find(p=>p.dataset.croc==='1');
+      if(q==='pondbite'){bad().click();return}
+      if(q==='pondhop'){safe().click();await until(()=>document.getElementById('dare'));await wait(400);document.getElementById('dare').click();await wait(500);safe().click();return}
+      if(q==='pondjackpot'){for(let r=0;r<5;r++){await until(()=>document.querySelector('.pad.live'));await wait(300);safe().click();if(r<4){await until(()=>document.getElementById('dare'));await wait(400);document.getElementById('dare').click()}}return}
+      return}
+    force(q)},900)})();
 </script></body></html>
